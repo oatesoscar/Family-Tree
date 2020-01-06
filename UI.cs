@@ -344,7 +344,7 @@ namespace Family_Tree
                 switch (result3)
                 {
                     case 1:
-                        person.IsAMemberOfAFamily = true;
+                        person.IsAFamilyMember = true;
                         Console.WriteLine($"Do you want to use '{person.LastName}' As Family Name?  Yes:1 , No:2");
                         input = Console.ReadLine();
                         bool isInt4 = Int32.TryParse(input, out int result4);
@@ -376,7 +376,7 @@ namespace Family_Tree
                         }
                         break;
                     case 2:
-                        person.IsAMemberOfAFamily = false;
+                        person.IsAFamilyMember = false;
                         break;
                     default:
                         Console.WriteLine("Please enter 1 or 2");

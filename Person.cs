@@ -20,7 +20,7 @@ namespace Family_Tree
         public string MumLastName { get; set; }
         public bool IsAlive  { get; set; }
         public bool HasFamily { get; set; }
-        public bool IsAMemberOfAFamily { get; set; }
+        public bool IsAFamilyMember { get; set; }
         public bool HasParents { get; set; }
         public bool HasSiblings { get; set; }
         public bool HasChildren { get; set; }
