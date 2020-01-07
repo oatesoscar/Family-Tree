@@ -8,9 +8,12 @@ namespace Family_Tree
         {
 
             UI uI = new UI();
+            
             while (true)
             {
+                
                 uI.MainMenu();
+
             }
 
         }

@@ -10,7 +10,7 @@ namespace Family_Tree
     {
         string input;
         Regex regexName = new Regex(@"^[a-zA-Z]{1,25}\s*$");
-        Regex regexDateOfBirth = new Regex(@"^[0-9]{2}/[0-9]{2}/[0-9]{4}\s*$");
+        Regex regexDateOfBirth = new Regex(@"^[0-9]{4}-[0-9]{2}-[0-9]{2}\s*$");
         public void PrintIntro()
         {
             Console.WriteLine("*************************************************");
@@ -108,7 +108,9 @@ namespace Family_Tree
 
                         break;
                     case 7:
-                        Environment.ExitCode = -1;
+                        //DBConnect dB = new DBConnect();
+                        //dB.Insert();
+                        
                         break;
                     default:
                         Console.WriteLine("Please Select A Menu Action");
@@ -184,10 +186,14 @@ namespace Family_Tree
 
         public void SavePerson(Person person)
         {
-            string path = @"..\Files\People.json";
+            DBConnect dBConnect = new DBConnect();
+            dBConnect.Insert(person);
+
+            /*string path = @"..\Files\People.json";
             List<Person> people = new List<Person>();
             if (File.Exists(path))
             {
+
                 string peopleString = File.ReadAllText(path).ToString();
                 try
                 {
@@ -217,7 +223,7 @@ namespace Family_Tree
                 Console.WriteLine("Press any key to continue");
                 Console.ReadKey();
             }
-
+            */
         }
 
         private void CheckHasAFamilyOfOwn(Person person)
@@ -412,13 +418,13 @@ namespace Family_Tree
                     case 1:
                         person.HasParents = true;
                         Console.WriteLine("Enter Dad's First Name. Leave empty if Unknown");
-                        person.DadFirstName = Console.ReadLine();
+                        person.FatherFirstName = Console.ReadLine();
                         Console.WriteLine("Enter Dad's Last Name. Leave empty if Unknown");
-                        person.DadLastName = Console.ReadLine();
+                        person.FatherLastName = Console.ReadLine();
                         Console.WriteLine("Enter Mum's First Name. Leave empty if Unknown");
-                        person.MumFirstName = Console.ReadLine();
+                        person.MotherFirstName = Console.ReadLine();
                         Console.WriteLine("Enter Mum's Last Name. Leave empty if Unknown");
-                        person.MumLastName = Console.ReadLine();
+                        person.MotherLastName = Console.ReadLine();
                         break;
                     case 2:
                         person.HasParents = false;
@@ -535,7 +541,7 @@ namespace Family_Tree
         private void GetDateOfBirth(Person person)
         {
 
-            Console.WriteLine("Enter Date Of Birth 'mm/dd/yyy'");
+            Console.WriteLine("Enter Date Of Birth 'yyyy-mm-dd'");
         jump4:
             input = Console.ReadLine();
             if (regexDateOfBirth.IsMatch(input))
@@ -553,7 +559,7 @@ namespace Family_Tree
             }
             else
             {
-                Console.WriteLine("Please enter Date of Birth in The Format 'Month/Day/Year'");
+                Console.WriteLine("Please enter Date of Birth in The Format 'Year-Month-Day'");
                 goto jump4;
             }
         }
